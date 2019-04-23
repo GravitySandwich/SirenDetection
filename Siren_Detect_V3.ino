@@ -84,7 +84,6 @@ void setI2SFreq(int freq)
 
 //This was configured using the online Audio System Design Tool for Teensy Audio Library GUI
 //Visit https://www.pjrc.com/teensy/gui/ and import the below code to understand what each individual connection, mixer, input, output, control, and functions do
-/*
 AudioInputI2S            i2s1;           //xy=139,91
 AudioMixer4              mixer1;         //xy=312,134
 AudioOutputI2S           i2s2;           //xy=392,32
@@ -95,21 +94,6 @@ AudioConnection          patchCord3(i2s1, 1, mixer1, 1);
 AudioConnection          patchCord4(i2s1, 1, i2s2, 1);
 AudioConnection          patchCord5(mixer1, fft1024);
 AudioControlSGTL5000     audioShield;    //xy=366,225
-*/
-AudioInputI2S            i2s1;           //xy=201,234
-AudioFilterStateVariable filter1;        //xy=344,275
-AudioFilterStateVariable filter2;        //xy=347,328
-AudioOutputI2S           i2s2;           //xy=454,175
-AudioMixer4              mixer1;         //xy=506,271
-AudioAnalyzeFFT1024      fft1024;        //xy=674,278
-AudioConnection          patchCord1(i2s1, 0, i2s2, 0);
-AudioConnection          patchCord2(i2s1, 0, filter1, 0);
-AudioConnection          patchCord3(i2s1, 1, i2s2, 1);
-AudioConnection          patchCord4(i2s1, 1, filter2, 0);
-AudioConnection          patchCord5(filter1, 2, mixer1, 0);
-AudioConnection          patchCord6(filter2, 2, mixer1, 1);
-AudioConnection          patchCord7(mixer1, fft1024);
-AudioControlSGTL5000     audioShield;    //xy=428,368
 
 const int samplefreq = 8000;               //Set sampling frequency to 8000 Hz.
 
@@ -202,8 +186,7 @@ for(int j = 0; j<Sampling_LEDCount; ++j){
     }
     SamplingLEDs.show();
 
-//  filter1.frequency(1000);
-  //filter2.frequency(1000);
+
      
     //Serial.print("Is FFT AVAILABLE?  ");
    // Serial.print(fft1024.available());
@@ -632,12 +615,12 @@ bool Alarmtype = digitalRead(ALARM_TYPE_PIN);
 
   if(Alarmtype == LOW)
 {
-  DetectionAlarm1();
+  DetectionAlarm2();
 }
 
   else
   {
-    DetectionAlarm2();
+    DetectionAlarm1();
   }
 }
 }
